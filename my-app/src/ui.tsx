@@ -39,6 +39,12 @@ export const Text = styled.div`
   color: #fff;
   font-size: 36px;
 `
+export const ConWrap = styled.div`
+  max-height: 200px;
+  width: 50%;
+  justify-self: center;
+`
+
 export const Button = styled.button`
   border-style: none;
   outline: none;

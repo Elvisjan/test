@@ -2,8 +2,40 @@ import styled from 'styled-components'
 
 interface InputProps {
     area?: string;
-    placeholder: string;
+    content?: string;
+    placeholder?: string;
 }
+interface ButtonProps {
+  width?: string;
+  content?: string;  
+}
+export const Label = styled.label<InputProps>`
+display: grid;
+padding:0;
+margin:0;
+overflow:hidden;  
+box-sizing: border-box;
+::after {
+    content: '${props=>props.content}';
+    background-color: lightgray;
+    visibility: hidden;
+    display: inline-block;
+    border: 1px dotted black;
+    position: relative;
+    width: 100%;
+    max-height: 50px;
+    justify-self:center;
+    align-self: start;
+    top:-63%;
+    color: black;
+    box-sizing: border-box;
+  }
+:focus-within {
+  ::after {
+    visibility: visible;
+  }
+}  
+// `
 export const Input = styled.input<InputProps>`
   width: 35rem;
   height: 2rem;
@@ -12,12 +44,12 @@ export const Input = styled.input<InputProps>`
   border: none;
   color: black;
   text-align: center;
-  grid-area: ${props=> props.area || null};
-  ::placeholder {
+::placeholder {
     font-size: 17px;
     width: 100%;
     color: black;
   }
+
 `
 export const Section = styled.section`
   min-height: 100vh;
@@ -41,8 +73,9 @@ export const Text = styled.div`
 `
 export const ConWrap = styled.div`
   max-height: 200px;
-  width: 50%;
+  width: 560px;
   justify-self: center;
+  overflow-x: hidden;
 `
 
 export const Button = styled.button`
@@ -60,14 +93,14 @@ export const Button = styled.button`
     background-color: red;
   }
 `
-export const CCButton = styled(Button)`
+export const CCButton = styled(Button)<ButtonProps>`
   background-color: green;
   justify-self:center;
   color: white;
-  width: 30rem;
+  width: ${props => props.width|| '35rem'};
 
 `
-export const ForwardButton = styled(Button)`
+export const ForwardButton = styled(Button)<ButtonProps>`
   background-color: yellow;
   justify-self:center;
   width: 30rem;

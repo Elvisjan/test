@@ -3,27 +3,24 @@ import {createStore, createEvent} from 'effector'
 import {useStore} from 'effector-react'
 
 import { Input, Button, CCButton, 
-  ForwardButton, Section, AuthWrapper, ConWrap} from './ui';
+  ForwardButton, Section, AuthWrapper, ConWrap, Label} from './ui';
 import {createComponent} from 'effector-react'
-import { StyledComponent } from 'styled-components';
 function App() {
   let count = useStore(counter)
   return (
     <>
      <Section>
        <AuthWrapper>
-         <Button>ГосУслуги</Button>
-         <Button>ДБО</Button>
+         <Button>1</Button>
+         <Button>2</Button>
        </AuthWrapper>
-      <Input placeholder="blabla"></Input>
-      <Input placeholder='2'></Input>
-      <Input placeholder='3'></Input>
-      <Input placeholder='4'></Input>
-      <Input placeholder='5'></Input>
+      <Label content='Укажите как в паспорте'><Input placeholder="blabla"></Input></Label>
+      <Label content='На этот телефон мы отправим проверочный код и результат заявки'><Input placeholder='2'></Input></Label>
+      <Label content='На этот адрес мы отправим проверочный код и результат заявки' ><Input placeholder='4'></Input></Label>
       <Button onClick={()=> incr(!count)}>Нажимай</Button>
       <Conditions />
-      <CCButton>Вперёд</CCButton>
-      <ForwardButton>Не хочу ничего заполнять. Перезвоните мне</ForwardButton>
+      <CCButton width="25rem">Ifasdsad</CCButton>
+      <ForwardButton>Lorem ipsum dolor sit amet Nesciunt quo, minus tempore vero lauda</ForwardButton>
       </Section>
     </>
     )

@@ -1,29 +1,31 @@
-import React, {useRef} from 'react';
-import {createStore, createEvent} from 'effector'
-import {useStore} from 'effector-react'
+import React, { useRef } from 'react';
+import { createStore, createEvent } from 'effector'
+import { useStore } from 'effector-react'
 
-import { Input, Button, CCButton, 
-  ForwardButton, Section, AuthWrapper, ConWrap, Label} from './ui';
-import {createComponent} from 'effector-react'
+import {
+  Input, Button, CCButton,
+  ForwardButton, Section, ConWrap, Label, AuthWrapper, Scb
+} from './ui';
+import { createComponent } from 'effector-react'
 function App() {
   let count = useStore(counter)
   return (
     <>
-     <Section>
-       <AuthWrapper>
-         <Button>1</Button>
-         <Button>2</Button>
-       </AuthWrapper>
-      <Label content='Укажите как в паспорте'><Input placeholder="blabla"></Input></Label>
-      <Label content='На этот телефон мы отправим проверочный код и результат заявки'><Input placeholder='2'></Input></Label>
-      <Label content='На этот адрес мы отправим проверочный код и результат заявки' ><Input placeholder='4'></Input></Label>
-      <Button onClick={()=> incr(!count)}>Нажимай</Button>
-      <Conditions />
-      <CCButton width="25rem">Ifasdsad</CCButton>
-      <ForwardButton>Lorem ipsum dolor sit amet Nesciunt quo, minus tempore vero lauda</ForwardButton>
+      <Section>
+        <AuthWrapper area='b'>
+        <Button>1</Button>
+        <Button>2</Button>
+        </AuthWrapper>
+        <Label area='input1' content='орт'><Input placeholder="blabla"></Input></Label>
+        <Label area='input2' content='эотправодяв'><Input placeholder='2'></Input></Label>
+        <Label area='input3' content='dfasd' ><Input placeholder='4'></Input></Label>
+        <Button area='lorembtn' onClick={() => incr(!count)}>Нажимай</Button> 
+        <Conditions />       
+        <ForwardButton area='fbt'>Lorem ipsum dolor sit amet Nesciunt quo, minus tempore vero lauda</ForwardButton>
+        <CCButton area="ccbt" width="25rem">Ifasdsad</CCButton>
       </Section>
     </>
-    )
+  )
 }
 
 export default App;
@@ -31,19 +33,19 @@ const counter = createStore(false)
 const incr = createEvent<boolean>('increment')
 counter.on(incr, (_, res) => res)
 
-const Conditions = createComponent(counter, (props, state) => 
-{
+const Conditions = createComponent(counter, (props, state) => {
   const myRef = useRef() as React.MutableRefObject<HTMLDivElement>
-  return(
-      state ? 
-  <>
-  <ConWrap ref={myRef}>
-    <div>{text}</div>
-    <label><input type='checkbox' checked={!state} onChange={()=>incr(false)}/>Я согласен</label>
-  </ConWrap>
-  <button onClick={()=>myRef.current.scrollTop+=198}>Далее</button> 
-  </>: null
-)})
+  return (
+    state ?
+      <>
+        <ConWrap area='cond' ref={myRef}>
+          <div>{text}</div>
+          <label><input type='checkbox' checked={!state} onChange={() => incr(false)} />Я согласен</label>
+        </ConWrap>
+        <Scb area='cbtn' onClick={() => myRef.current.scrollTop += 198}>Далее</Scb>
+      </> : null
+  )
+})
 
 
 
